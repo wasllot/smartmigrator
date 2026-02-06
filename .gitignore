@@ -1,0 +1,19 @@
+# System
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Docker
+docker-compose.override.yml
+
+# PrestaShop / Module artifacts
+smartmigrator/config.xml
+smartmigrator/vendor/
+smartmigrator/backups/
+smartmigrator/uploads/
+*.zip
+
+# Ignore the other old module folder if present
+shopifyimporter/

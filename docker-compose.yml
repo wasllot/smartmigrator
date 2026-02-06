@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: ps_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=prestashop
+      - MYSQL_USER=prestashop
+      - MYSQL_PASSWORD=prestashop
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - prestashop-net
+
+  prestashop:
+    image: prestashop/prestashop:1.7.6.8
+    container_name: ps_shop
+    ports:
+      - "8080:80"
+    environment:
+      - DB_SERVER=mysql
+      - DB_USER=prestashop
+      - DB_PASSWD=prestashop
+      - DB_NAME=prestashop
+      - PS_INSTALL_AUTO=1
+      - PS_DEV_MODE=1
+      - PS_DOMAIN=localhost:8080
+      - ADMIN_MAIL=admin@prestashop.com
+      - ADMIN_PASSWD=password123
+      - PS_FOLDER_ADMIN=admin_dev
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    volumes:
+      # Mount the module directory directly into the container
+      - ./smartmigrator:/var/www/html/modules/smartmigrator
+    networks:
+      - prestashop-net
+
+volumes:
+  db_data:
+
+
+networks:
+  prestashop-net:
