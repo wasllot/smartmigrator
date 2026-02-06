@@ -3,6 +3,8 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+require_once __DIR__ . '/classes/Service/ColumnMapper.php';
+require_once __DIR__ . '/classes/Service/ColumnMapper.php';
 require_once __DIR__ . '/classes/Service/CsvAnalyzer.php';
 require_once __DIR__ . '/classes/Service/BackupService.php';
 require_once __DIR__ . '/classes/Repository/QueueRepository.php';
